@@ -1,4 +1,8 @@
 package com.ytalogsantos.mpsys.models;
 
-public class Programmer {
+import jakarta.persistence.Entity;
+
+@Entity
+public class Programmer extends Account {
+
 }

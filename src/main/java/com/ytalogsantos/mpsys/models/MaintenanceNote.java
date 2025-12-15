@@ -2,10 +2,7 @@ package com.ytalogsantos.mpsys.models;
 
 import com.ytalogsantos.mpsys.models.enums.NotePriority;
 import com.ytalogsantos.mpsys.models.enums.NoteStatus;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
@@ -21,5 +18,9 @@ public class MaintenanceNote {
     private String title;
     private String description;
     private LocalDateTime timestamp;
-    // TODO create a sender entity (may not be necessary, we'll see later);
+
+    @ManyToOne
+    @JoinColumn(name = "OperatorId")
+    private Operator operatorId;
+
 }
