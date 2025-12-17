@@ -4,6 +4,7 @@ import com.ytalogsantos.mpsys.models.enums.NotePriority;
 import com.ytalogsantos.mpsys.models.enums.NoteStatus;
 import jakarta.persistence.*;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 @Entity
@@ -17,7 +18,7 @@ public class MaintenanceNote {
     private NoteStatus status;
     private String title;
     private String description;
-    private LocalDateTime timestamp;
+    private Instant timestamp;
 
     @ManyToOne
     @JoinColumn(name = "OperatorId")
