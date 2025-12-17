@@ -1,7 +1,7 @@
 package com.ytalogsantos.mpsys.controllers;
 
 import com.ytalogsantos.mpsys.models.User;
-import com.ytalogsantos.mpsys.services.UserService;
+import com.ytalogsantos.mpsys.services.UserServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,16 +9,16 @@ import java.util.List;
 @RestController
 @RequestMapping("/users")
 public class UserController {
-    private final UserService userService;
+    private final UserServiceImpl userServiceImpl;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
+    public UserController(UserServiceImpl userServiceImpl) {
+        this.userServiceImpl = userServiceImpl;
     }
 
     @PostMapping
     public User createUser(@RequestBody User user) {
         try {
-            return userService.createUser(user);
+            return userServiceImpl.createUser(user);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
@@ -29,7 +29,7 @@ public class UserController {
     @GetMapping
     public List<User> getUsers() {
         try {
-            return userService.getUsers();
+            return userServiceImpl.getAll();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
