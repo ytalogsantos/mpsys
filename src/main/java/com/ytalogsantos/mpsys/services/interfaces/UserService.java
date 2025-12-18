@@ -10,8 +10,8 @@ public interface UserService {
     public List<User> getAll();
     public Boolean update(User user);
     public void delete(Long id);
-    public String getAccountType();
-    public void resetPassword();
-    public void changeAccountStatus();
+    public String getAccountType(User user);
+    //public void resetPassword(); TODO complete implementation
+    public void changeAccountStatus(User user);
 
 }

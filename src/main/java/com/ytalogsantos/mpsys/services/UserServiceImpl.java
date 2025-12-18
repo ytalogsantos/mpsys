@@ -17,7 +17,7 @@ public class UserServiceImpl implements UserService {
 
     public User save(User user) {
         try {
-            if (Boolean.FALSE.equals(existingUser(user)))
+            if (!userRepository.existsById(user.getId()))
                 return userRepository.save(user);
             System.out.println("This user already exists. Try login.");
             return null;
@@ -66,4 +66,49 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    public void delete(Long id) {
+        try {
+            if (userRepository.existsById(id)) {
+                userRepository.deleteById(id);
+                System.out.println("User deleted.");
+            }
+            System.out.println("User not found.");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public String getAccountType(User user) {
+        try {
+            if (userRepository.existsById(user.getId())) {
+                String accountType = user.getAccount().getClass().toString(); // TODO test this
+                System.out.println(accountType);
+                return accountType;
+            }
+            System.out.println("User not found.");
+            return null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    public void changeAccountStatus(User user) {
+        try {
+
+            if (!userRepository.existsById(user.getId())) {
+                System.out.println("User not found.");
+            }
+
+            if (user.isActive()) {
+                user.setActive(false);
+                userRepository.save(user);
+                System.out.println("Account deactivated.");
+            } else {
+                System.out.println("Account is already deactivated.");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }
