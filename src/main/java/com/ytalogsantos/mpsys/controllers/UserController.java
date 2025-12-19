@@ -18,10 +18,10 @@ public class UserController {
     @PostMapping
     public User createUser(@RequestBody User user) {
         try {
-            return userServiceImpl.createUser(user);
+            return userServiceImpl.save(user);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return null;
+            return null; // TODO return the correct HTTP status code
         }
         // TODO handle errors correctly
     }
@@ -29,10 +29,11 @@ public class UserController {
     @GetMapping
     public List<User> getUsers() {
         try {
+            System.out.println("It works.");
             return userServiceImpl.getAll();
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return null;
+            return null; // TODO return the correct HTTP status code
         }
         // TODO handle errors correctly
     }
