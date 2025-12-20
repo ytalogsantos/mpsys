@@ -63,3 +63,12 @@ replay_pid*
 
 application.properties
 application-*.properties
+
+# Environment Variables
+
+.env
+.env.*
+
+# Docker
+
+docker-compose.override.yml
